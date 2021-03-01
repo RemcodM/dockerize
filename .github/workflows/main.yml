@@ -1,0 +1,16 @@
+name: CI
+on:
+  release:
+    types: [created]
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - run: curl -L https://github.com/github/hub/releases/download/v2.14.2/hub-linux-amd64-2.14.2.tgz | tar -xzvf -
+    - run: make push-release
+      env:
+        DEPLOY_LOGIN: ${{secrets.DEPLOY_LOGIN}}
+        DEPLOY_PASSWORD: ${{secrets.DEPLOY_PASSWORD}}
