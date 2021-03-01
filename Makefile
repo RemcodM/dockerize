@@ -29,11 +29,11 @@ release: dist
 	tar -cvzf dockerize-linux-ppc64le-$(TAG).tar.gz -C dist/linux/ppc64le dockerize
 
 push-release: release
-	echo -ne "machine github.com\nlogin $(DEPLOY_LOGIN)\npassword $(DEPLOY_PASSWORD)\n" > $(HOME)/.netrc && chmod 600 ~/.netrc
-	echo -ne "github.com:- user: $(DEPLOY_LOGIN)\n  oauth_token: $(DEPLOY_PASSWORD)\n  protocol: https\n" > $(HOME)/.config/hub
+	echo -ne "machine github.com\nlogin $$DEPLOY_LOGIN\npassword $$DEPLOY_PASSWORD\n" > ~/.netrc && chmod 600 ~/.netrc
+	echo -ne "github.com:\n- user: $$DEPLOY_LOGIN\n  oauth_token: $$DEPLOY_PASSWORD\n  protocol: https\n" > ~/.config/hub
 	git config --global --add user.name "Github Actions"
 	git config --global --add user.email "github-action@users.noreply.github.com"
-	hub release create \
+	GIT_EDITOR=true hub release create \
 	    -a dockerize-linux-amd64-$(TAG).tar.gz \
 	    -a dockerize-linux-386-$(TAG).tar.gz \
 	    -a dockerize-linux-armel-$(TAG).tar.gz \
