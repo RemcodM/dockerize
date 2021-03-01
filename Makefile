@@ -39,4 +39,4 @@ push-release: release
 	    -a dockerize-linux-armel-$(TAG).tar.gz \
 	    -a dockerize-linux-armhf-$(TAG).tar.gz \
 	    -a dockerize-linux-ppc64le-$(TAG).tar.gz \
-	    $(TAG)
+	    -m "$(TAG)" $(TAG)
