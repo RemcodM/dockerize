@@ -33,10 +33,10 @@ push-release: release
 	echo -ne "github.com:- user: $(DEPLOY_LOGIN)\n  oauth_token: $(DEPLOY_PASSWORD)\n  protocol: https\n" > $(HOME)/.config/hub
 	git config --global --add user.name "Github Actions"
 	git config --global --add user.email "github-action@users.noreply.github.com"
-	hub release create \
+	GIT_EDITOR=true hub release edit \
 	    -a dockerize-linux-amd64-$(TAG).tar.gz \
 	    -a dockerize-linux-386-$(TAG).tar.gz \
 	    -a dockerize-linux-armel-$(TAG).tar.gz \
 	    -a dockerize-linux-armhf-$(TAG).tar.gz \
 	    -a dockerize-linux-ppc64le-$(TAG).tar.gz \
-	    -m "$(TAG)" $(TAG)
+	    -m "" $(TAG)
