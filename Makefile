@@ -34,10 +34,10 @@ push-release: release
 	git config --global --add user.name "Github Actions"
 	git config --global --add user.email "github-action@users.noreply.github.com"
 	GIT_EDITOR=true hub release create \
-	    -a dockerize-linux-amd64-$(TAG).tar.gz \
-	    -a dockerize-linux-386-$(TAG).tar.gz \
-	    -a dockerize-linux-armel-$(TAG).tar.gz \
-	    -a dockerize-linux-armhf-$(TAG).tar.gz \
+	  -a dockerize-linux-amd64-$(TAG).tar.gz \
+	  -a dockerize-linux-386-$(TAG).tar.gz \
+	  -a dockerize-linux-armel-$(TAG).tar.gz \
+	  -a dockerize-linux-armhf-$(TAG).tar.gz \
 		-a dockerize-linux-arm64-$(TAG).tar.gz \
-	    -a dockerize-linux-ppc64le-$(TAG).tar.gz \
-	    -m "$(TAG)" $(TAG)
+	  -a dockerize-linux-ppc64le-$(TAG).tar.gz \
+	  -m "$(TAG)" $(TAG)
